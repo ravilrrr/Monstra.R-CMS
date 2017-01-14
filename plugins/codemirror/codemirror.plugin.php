@@ -28,14 +28,15 @@ Action::add('admin_header', 'CodeMirror::headers');
 class CodeMirror
 {
     
-    public static $theme = 'mdn-like';
+    public static $theme = 'default';
 
     /**
      * Set editor headers
      */
     public static function headers()
     {
-        echo ('
+        if (Request::get('id') == 'themes' || Request::get('id') == 'snippets' || Request::get('id') == 'emails') { 
+		    echo ('
             <link rel="stylesheet" type="text/css" href="'.Option::get('siteurl').'/plugins/codemirror/codemirror/lib/codemirror.css" />
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/lib/codemirror.js"></script>
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/addon/edit/matchbrackets.js"></script>
@@ -52,13 +53,14 @@ class CodeMirror
                     height:400px!important; 
                     border: 1px solid #ccc;
                     color: #555;
-                    font-family: monospace;
-                    font-size: 15px;
-                    line-height: 1;
+                    font-family: monospace !important;;
+                    font-size: 16px !important;
+                    line-height: 16px !important;
                     padding: 6px 9px;
                 }
             </style>
-        ');
+            ');
+		}
 
         if (Request::get('id') == 'themes' || Request::get('id') == 'snippets' || Request::get('id') == 'emails') { 
             

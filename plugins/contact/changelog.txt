@@ -1,0 +1,4 @@
+Contact 1.1.1, 2013-12-22
+------------------------
+- PHPMailer used
+- PSR coding fixes

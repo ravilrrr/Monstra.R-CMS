@@ -11,17 +11,18 @@
  *
  */
 
-// Register plugin
-Plugin::register( __FILE__,
-                __('Users', 'users'),
-                __('Users manager', 'users'),
-                '1.0.0',
-                'Awilum',
-                'http://monstra.org/',
-                'users',
-                'box');
 
 if (Session::exists('user_role') && in_array(Session::get('user_role'), array('admin', 'editor'))) {
+
+	// Register plugin
+	Plugin::register( __FILE__,
+					__('Users', 'users'),
+					__('Users manager', 'users'),
+					'1.0.0',
+					'Awilum',
+					'http://monstra.org/',
+					'users',
+					'box');
 
     // Include Users Admin
     Plugin::Admin('users', 'box');

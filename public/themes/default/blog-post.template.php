@@ -1,5 +1,5 @@
 <?php Chunk::get('header'); ?>
-
+<?php Chunk::get('header-content-blog'); ?>
 <div class="container-wide">
 
     <div class="container">
@@ -11,11 +11,10 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="monstra-blog-post">
                     <?php echo Blog::getPost(); ?>
                 </div>
-                <small class="monstra-blog-date"><?php echo Blog::getPostDate('d M Y'); ?> / <?php echo Blog::getPostAuthor(); ?></small>
             </div>
         </div>
 

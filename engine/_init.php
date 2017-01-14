@@ -21,7 +21,7 @@ include ROOT . DS .'engine'. DS .'Monstra.php';
  *   Monstra::STAGING     - The staging environment.
  *   Monstra::PRODUCTION  - The production environment.
  */
-Monstra::$environment = Monstra::PRODUCTION;
+Monstra::$environment = Monstra::DEVELOPMENT;
 
 /**
  * Report Errors

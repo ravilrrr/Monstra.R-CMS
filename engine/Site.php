@@ -217,6 +217,6 @@ class Site
      */
     public static function powered()
     {
-        return __('Powered by', 'system').' <a href="http://monstra.org" target="_blank">Monstra</a> ' . Monstra::VERSION;
+        return __('Powered by', 'system').' <a href="http://monstra.org" target="_blank">Monstra.R</a> ' . Monstra::VERSION;
     }
 }

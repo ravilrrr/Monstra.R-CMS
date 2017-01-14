@@ -78,7 +78,7 @@ define('MONSTRA_EVAL_PHP', false);
 /**
  * Check Monstra CMS version
  */
-define('CHECK_MONSTRA_VERSION', true);
+define('CHECK_MONSTRA_VERSION', false);
 
 /**
  * Set gzip output

@@ -659,3 +659,7 @@ th {
         border-top: 1px solid #ddd!important;
     }
 }
+
+.page-pages .table-responsive {
+    overflow-x: visible;
+}

@@ -36,7 +36,7 @@
             'Wrong <b>username</b> or <b>password</b>' => 'Неправильный <b>логин</b> или <b>пароль</b>',
             'Your changes have been saved.' => 'Ваши изменения были сохранены.',
             'New user have been registered.' => 'Новый пользователь был зарегистрирован.',
-            'Captcha' => 'Каптча',
+            'Captcha' => 'Введите код',
             'Registration' => 'Регистрация',
             'Username' => 'Имя пользователя',
             'User email is invalid' => 'Эл. почта является недействительной',

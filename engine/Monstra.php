@@ -1,7 +1,7 @@
 <?php defined('MONSTRA_ACCESS') or die('No direct script access.');
 
 /**
- * Monstra
+ * MonstraR
  *
  * @package Monstra
  * @author Romanenko Sergey / Awilum <awilum@msn.com>
@@ -31,7 +31,7 @@ class Monstra
     /**
      * The version of Monstra
      */
-    const VERSION = '3.0.4';
+    const VERSION = '1.0';
 
 
     /**

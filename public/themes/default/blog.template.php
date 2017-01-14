@@ -1,4 +1,5 @@
 <?php Chunk::get('header'); ?>
+<?php Chunk::get('header-content'); ?>
 <div class="container-wide">
 
     <div class="container">
@@ -10,10 +11,10 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <?php echo Blog::getPosts(3); ?>
             </div>
-            <div class="col-xs-4 tags">
+            <div class="col-xs-12 col-sm-2 tags">
                 <h3>Tags</h3>
                 <?php echo Blog::getTags(); ?>
             </div>

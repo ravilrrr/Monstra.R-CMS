@@ -128,7 +128,7 @@
             </div>
 
             <div class="text-center">
-                © 2012 - 2016 <a href="http://monstra.org/about/license" target="_blank">Monstra</a> – <?php echo __('Version', 'system'); ?> <?php echo Monstra::VERSION; ?>
+                © 2012 - 2016 <a href="http://monstra.org/about/license" target="_blank">Monstra.R</a> – <?php echo __('Version', 'system'); ?> <?php echo Monstra::VERSION; ?>
             </div>
         </div>
     </body>

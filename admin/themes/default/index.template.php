@@ -74,7 +74,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo Site::url(); ?>/admin/index.php?id=dashboard">MONSTRA</a>
+            <a class="navbar-brand" href="<?php echo Site::url(); ?>/admin/index.php?id=dashboard">MONSTRA.R</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -156,7 +156,7 @@
       <footer class="container visible-md visible-lg">
           <p class="pull-right">
             <span>
-              <a href="http://monstra.org" target="_blank">Monstra</a> was made by <a href="http://awilum.github.io" target="_blank" class="highlight">Sergey Romanenko</a> and is maintained by <a href="https://github.com/monstra-cms/monstra/network/members" target="_blank" class="highlight">Monstra Community</a> / © 2012 - 2016 <a href="http://monstra.org/about/license" target="_blank">Monstra</a> – <?php echo __('Version', 'system'); ?> <?php echo Monstra::VERSION; ?>
+              <a href="http://monstra.org" target="_blank">Monstra</a> was made by <a href="http://awilum.github.io" target="_blank" class="highlight">Sergey Romanenko</a> and is maintained by <a href="https://github.com/monstra-cms/monstra/network/members" target="_blank" class="highlight">Monstra Community</a> / © 2012 - 2016 <a href="http://monstra.org/about/license" target="_blank">Monstra.R</a> – <?php echo __('Version', 'system'); ?> <?php echo Monstra::VERSION; ?>
             </span>
           </p>
       </footer>

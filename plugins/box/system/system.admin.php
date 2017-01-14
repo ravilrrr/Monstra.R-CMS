@@ -1,8 +1,10 @@
 <?php
 
 // Add Monstra check action
+
+	
 if (CHECK_MONSTRA_VERSION) {
-    Action::add('admin_post_template', 'checkMonstraVersion', 9999);
+  Action::add('admin_post_template', 'checkMonstraVersion', 9999);
 }
 
 /**

@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="row">	
-	<div class="col-md-3">
+	<div class="col-md-12">
 		<form method="post">
 		    <?php echo Form::hidden('csrf', Security::token()); ?>
 		    <div class="form-group">

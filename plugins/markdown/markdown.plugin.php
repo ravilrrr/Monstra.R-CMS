@@ -24,8 +24,9 @@ Filter::add('content', 'markdown', 1);
 
 use \Michelf\MarkdownExtra;
 
-include PLUGINS . '/markdown/php-markdown/Michelf/Markdown.php';
-include PLUGINS . '/markdown/php-markdown/Michelf/MarkdownExtra.php';
+include PLUGINS . '/markdown/php-markdown/Michelf/Markdown.inc.php';
+include PLUGINS . '/markdown/php-markdown/Michelf/MarkdownExtra.inc.php';
+include PLUGINS . '/markdown/php-markdown/Michelf/MarkdownInterface.inc.php';
 
 function markdown($content)
 {
