@@ -18,4 +18,4 @@ There can be no thought of finishing for ‘aiming for the stars.’ Both figura
 
 Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.
 
-![](/public/uploads/post-sample-image.jpg#img-thumbnail){.img-responsive}
+![](/public/uploads/post-sample-image.jpg){.img-responsive}

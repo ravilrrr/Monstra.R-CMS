@@ -11,22 +11,20 @@
  *
  */
 
+// Register plugin
+Plugin::register( __FILE__,
+				__('Users', 'users'),
+				__('Users manager', 'users'),
+				'1.0.0',
+				'Awilum',
+				'http://monstra.org/',
+				'users',
+				'box');
 
 if (Session::exists('user_role') && in_array(Session::get('user_role'), array('admin', 'editor'))) {
 
-	// Register plugin
-	Plugin::register( __FILE__,
-					__('Users', 'users'),
-					__('Users manager', 'users'),
-					'1.0.0',
-					'Awilum',
-					'http://monstra.org/',
-					'users',
-					'box');
-
     // Include Users Admin
     Plugin::Admin('users', 'box');
-    
 }
 
 // Add Plugin Javascript
@@ -61,7 +59,8 @@ class Users extends Frontend
     protected static function route()
     {
         /* /users */
-        if (Uri::segment(0) == 'users' && !Uri::segment(1)) return 'list';
+         // if (Uri::segment(0) == 'users' && !Uri::segment(1)) return 'list';
+		 if (Uri::segment(0) == 'users' && !Uri::segment(1)) return 'login';
         /* /users/(int) */
         if (Uri::segment(1) && (Uri::segment(1) !== 'login' && Uri::segment(1) !== 'registration' && Uri::segment(1) !== 'password-reset' && Uri::segment(2) !== 'edit')) return 'profile';
         /* /users/login */
