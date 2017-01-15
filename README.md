@@ -16,7 +16,7 @@ Apache с [Mod Rewrite](http://httpd.apache.org/docs/current/mod/mod_rewrite.htm
 5. Установите права на файлы `/install.php`, `/.htaccess` и `/sitemap.xml`<br/> 755 (или 777) если соответствующие права автоматически не установлены.
 6. Перейти по адресу http://example.org/install.php для начала установки.
 
-### Изначальные отличия от Monstra 3
+### Изначальные отличия от Monstra 3 (monstra.org)
 Новый шаблон переделанный полностью под двиг https://blackrockdigital.github.io/startbootstrap-clean-blog/   
 По умолчанию редактор http://simplemde.com/   
 Обновил библиотеку Markdown и добавил Markdown Extendet (для любителей писать на чистом Markdown т.е по минимуму html)   
@@ -45,7 +45,7 @@ Webserver: Apache with [Mod Rewrite](http://httpd.apache.org/docs/current/mod/mo
 5. Also you may also need to recursively CHMOD the /install.php, /.htaccess and /sitemap.xml to 755(or 777) if your host doesn't set it implicitly.
 6. Type http://example.org/install.php in the browser.
 
-### The initial differences from Monstra 3
+### The initial differences from Monstra 3 monstra.org
 A new template has been completely revised under the engine https://blackrockdigital.github.io/startbootstrap-clean-blog/   
 By default, the editor http://simplemde.com/   
 Updated the library and added Markdown Markdown Extendet (for those who like to write in pure Markdown, ie at least html)   
