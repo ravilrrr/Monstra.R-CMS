@@ -19,7 +19,7 @@ Apache с [Mod Rewrite](http://httpd.apache.org/docs/current/mod/mod_rewrite.htm
 ### Изначальные отличия от [Monstra 3](http://monstra.org/)
 Новый шаблон переделанный полностью под двиг https://blackrockdigital.github.io/startbootstrap-clean-blog/   
 По умолчанию редактор http://simplemde.com/   
-Обновил библиотеку Markdown и добавил Markdown Extendet (для любителей писать на чистом Markdown т.е по минимуму html)   
+Обновил библиотеку Markdown и добавил Markdown Extra (для любителей писать на чистом Markdown т.е по минимуму html)   
 Обновил CodeMirror до последней версии и поправил стили в редакторе   
 Обновил Bootsrap до версии 3.3.7   
 Обновил Jquery 2.2.4   
@@ -48,7 +48,7 @@ Webserver: Apache with [Mod Rewrite](http://httpd.apache.org/docs/current/mod/mo
 ### The initial differences from [Monstra 3](http://monstra.org/)
 A new template has been completely revised under the engine https://blackrockdigital.github.io/startbootstrap-clean-blog/   
 By default, the editor http://simplemde.com/   
-Updated the library and added Markdown Markdown Extendet (for those who like to write in pure Markdown, ie at least html)   
+Updated the library Markdown and added  Markdown Extra (for those who like to write in pure Markdown, ie at least html)   
 Updated CodeMirror to the latest version and adjusted the styles in the editor   
 Bootsrap updated to version 3.3.7   
 Updated Jquery 2.2.4   
