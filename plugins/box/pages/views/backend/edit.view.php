@@ -1,13 +1,20 @@
-<h2 class="margin-bottom-1"><?php if (Request::get('name') == 'error404') { echo __('Edit 404 Page', 'pages'); } else { echo __('Edit Page', 'pages'); } ?></h2>
-
+<h2 class="margin-bottom-1">
 <?php
-    echo (
-        Form::open().
-        Form::hidden('csrf', Security::token()).
-        Form::hidden('page_old_name', Request::get('name')).
-        Form::hidden('old_parent', $page['parent']).
-        Form::hidden('page_id', $page['id'])
-    );
+   if (Request::get('action') == 'edit_page' && Request::get('name') != 'error404') echo __('Edit Page', 'pages');
+   if (Request::get('action') == 'add_page') echo __('New Page', 'pages');
+   if (Request::get('name') == 'error404') echo __('Edit 404 Page', 'pages');
+?>
+</h2>
+<?php
+    
+    echo Form::open();
+    echo Form::hidden('csrf', Security::token());
+    
+    if (Request::get('action') != 'add_page') {
+        echo Form::hidden('page_old_name', Request::get('name'));
+        echo Form::hidden('old_parent', $page['parent']);
+        echo Form::hidden('page_id', $page['id']);
+    }
 ?>
 
 <ul class="nav nav-tabs">
@@ -29,25 +36,24 @@
         </div>
         <div class="form-group">
         <?php            
-
-            if (Request::get('name') !== 'error404') {
-                echo (
-                    Form::label('page_name', __('Slug (url)', 'pages'))
-                );
-            }
-
             if (Request::get('name') == 'error404') {
                 echo Form::hidden('page_name', $slug_to_edit);
             } else {
-                echo (
-                    Form::input('page_name', $slug_to_edit, array('class' => (isset($errors['pages_empty_name'])) ? 'form-control error-field' : 'form-control'))
-                );
+                echo Form::label('page_name', __('Slug (url)', 'pages'));  
+                echo Form::input('page_name', $slug_to_edit, array('class' => (isset($errors['pages_empty_name'])) ? 'form-control error-field' : 'form-control'));
             }
 
             if (isset($errors['pages_empty_name'])) echo '<span class="error-message">'.$errors['pages_empty_name'].'</span>';
             if (isset($errors['pages_exists'])) echo '<span class="error-message">'.$errors['pages_exists'].'</span>';
         ?>
         </div>
+        
+        <div class="form-group">
+        <?php
+            echo Form::label('page_image', __('Page image', 'pages')); 
+            echo Form::input('page_image', $path_to_image, array('class' => 'form-control'))                
+        ?>
+        </div>      
     </div>
     <div class="tab-pane <?php if (Notification::get('metadata')) { ?>active<?php } ?>" id="metadata">
         <div class="form-group">
@@ -86,62 +92,56 @@
         </div>
     </div>
     <div class="tab-pane <?php if (Notification::get('settings')) { ?>active<?php } ?>" id="settings">        
-            <?php
-                if (Request::get('name') == 'error404') {
-                    echo Form::hidden('pages', $parent_page);
-                } else {
-            ?>
-            <div class="form-group">
-            <?php
-                echo (
-                    Form::label('pages', __('Parent', 'pages')).
-                    Form::select('pages', $pages_array, $parent_page, array('class' => 'form-control'))
-                );
-            ?>
-            </div>
-            <?php } ?>
-            <?php if (Request::get('name') != 'error404') { ?>
-                <div class="form-group">
-            <?php } else { ?>
-            <div>
-            <?php } ?>
-            <?php
-                echo (
-                    Form::label('templates', __('Template', 'pages')).
-                    Form::select('templates', $templates_array, $template, array('class' => 'form-control'))
-                );
-            ?>
-            </div>
-            <?php
-                if (Request::get('name') == 'error404') {
-                    echo Form::hidden('status', $status);
-                } else {
-            ?>
-            <div class="form-group">
-            <?php
-                echo (
-                    Form::label('status', __('Status', 'pages')).
-                    Form::select('status', $status_array, $status, array('class' => 'form-control'))
-                );
-            ?>
-            </div>
-            <?php } ?>
-            <?php
-                if (Request::get('name') == 'error404') {
-                    echo Form::hidden('access', $access);
-                } else {
-            ?>
-            <div class="form-group">
-            <?php
-                echo (
-                    Form::label('access', __('Access', 'pages')).
-                    Form::select('access', $access_array, $access, array('class' => 'form-control'))
-                );
-            ?>
-            </div>
-            <?php } ?>        
+        <?php 
+        if (Request::get('name') == 'error404') {
+            echo Form::hidden('pages', $parent_page);
+        } else {
+        ?>
+        <div class="form-group">
+            <?php echo (
+                Form::label('pages', __('Parent', 'pages')).
+                Form::select('pages', $pages_array, $parent_page, array('class' => 'form-control'))
+            ); ?>
+        </div>
+        <?php } ?>
+
+        <div class="form-group">
+        <?php echo (
+            Form::label('templates', __('Template', 'pages')).
+            Form::select('templates', $templates_array, $template, array('class' => 'form-control'))
+        ); ?>       
+        </div>
+
+        <?php
+            if (Request::get('name') == 'error404') {
+                echo Form::hidden('status', $status);
+            } else {
+        ?>
+        <div class="form-group">
+        <?php
+            echo (
+                Form::label('status', __('Status', 'pages')).
+                Form::select('status', $status_array, $status, array('class' => 'form-control'))
+            );
+        ?>
+        </div>
+        <?php } ?>
+        <?php
+            if (Request::get('name') == 'error404') {
+                echo Form::hidden('access', $access);
+            } else {
+        ?>
+        <div class="form-group">
+        <?php
+            echo (
+                Form::label('access', __('Access', 'pages')).
+                Form::select('access', $access_array, $access, array('class' => 'form-control'))
+            );
+        ?>
+        </div>
+        <?php } ?>        
     </div>
-</div>
+    </div>
 
 <div class="row margin-bottom-1">
     <div class="col-xs-12">
@@ -169,11 +169,21 @@
 <div class="row margin-top-1">
     <div class="col-sm-6">
         <?php
+        if (Request::get('action') == 'edit_page') { 
             echo (
                 Form::submit('edit_page_and_exit', __('Save and Exit', 'pages'), array('class' => 'btn btn-phone btn-primary')).Html::nbsp(2).
                 Form::submit('edit_page', __('Save', 'pages'), array('class' => 'btn btn-phone btn-primary')).Html::nbsp(2).
                 Html::anchor(__('Cancel', 'pages'), 'index.php?id=pages', array('title' => __('Cancel', 'pages'), 'class' => 'btn btn-phone btn-default'))
             );
+        }
+       
+        if (Request::get('action') == 'add_page') { 
+            echo (
+                Form::submit('add_page_and_exit', __('Save and Exit', 'pages'), array('class' => 'btn btn-phone btn-primary')).Html::nbsp(2).
+                Form::submit('add_page', __('Save', 'pages'), array('class' => 'btn btn-phone btn-primary')).Html::nbsp(2).
+                Html::anchor(__('Cancel', 'pages'), 'index.php?id=pages', array('title' => __('Cancel', 'pages'), 'class' => 'btn btn-phone btn-default'))
+            );
+        }        
         ?>
     </div>
     <div class="col-sm-6 visible-sm visible-md visible-lg">
@@ -185,6 +195,6 @@
                 </span>            
             </div>           
         </div>
-        <?php echo Form::close(); ?>
     </div>
 </div>
+<?php echo Form::close(); ?>

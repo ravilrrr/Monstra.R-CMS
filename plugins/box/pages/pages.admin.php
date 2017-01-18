@@ -47,7 +47,7 @@ class PagesAdmin extends Backend
 
         $pages = new Table('pages');
         PagesAdmin::$pages = $pages;
-
+        
         $users = new Table('users');
         $user = $users->select('[id='.Session::get('user_id').']', null);
 
@@ -101,6 +101,7 @@ class PagesAdmin extends Backend
                                                  'access'       => (isset($orig_page['access'])) ? $orig_page['access'] : 'public',
                                                  'expand'       => (isset($orig_page['expand'])) ? $orig_page['expand'] : '0',
                                                  'title'        => $rand_page_title,
+                                                 'image'        => $orig_page['image'],
                                                  'meta_title'   => $orig_page['meta_title'],
                                                  'description'  => $orig_page['description'],
                                                  'keywords'     => $orig_page['keywords'],
@@ -174,6 +175,7 @@ class PagesAdmin extends Backend
                                                         'robots_index' => $robots_index,
                                                         'robots_follow'=> $robots_follow,
                                                         'title'        => Request::post('page_title'),
+                                                        'image'        => Request::post('page_image'),
                                                         'meta_title'   => Request::post('page_meta_title'),
                                                         'description'  => Request::post('page_description'),
                                                         'keywords'     => Request::post('page_keywords'),
@@ -226,6 +228,7 @@ class PagesAdmin extends Backend
                     if (Request::post('page_keywords'))    $post_keywords    = Request::post('page_keywords'); else $post_keywords = '';
                     if (Request::post('page_description')) $post_description = Request::post('page_description'); else $post_description = '';
                     if (Request::post('page_tags'))        $post_tags        = Request::post('page_tags'); else $post_tags = '';
+                    if (Request::post('page_image'))       $post_image       = Request::post('page_image'); else $post_image = '';
                     if (Request::post('editor'))           $post_content     = Request::post('editor'); else $post_content = '';
                     if (Request::post('templates'))        $post_template    = Request::post('templates'); else $post_template = 'index';
                     if (Request::post('status'))           $post_status      = Request::post('status'); else $post_status = 'published';
@@ -242,20 +245,22 @@ class PagesAdmin extends Backend
                     Notification::setNow('page', 'page');
 
                     // Display view
-                    View::factory('box/pages/views/backend/add')
+                    View::factory('box/pages/views/backend/edit')
                             ->assign('post_name', $post_name)
-                            ->assign('post_title', $post_title)
-                            ->assign('post_meta_title', $post_meta_title)                            
-                            ->assign('post_description', $post_description)
-                            ->assign('post_keywords', $post_keywords)
-                            ->assign('post_tags', $post_tags)
-                            ->assign('post_content', $post_content)
+                            ->assign('slug_to_edit', '')
+                            ->assign('title_to_edit', $post_title)
+                            ->assign('meta_title_to_edit', $post_meta_title)                            
+                            ->assign('description_to_edit', $post_description)
+                            ->assign('keywords_to_edit', $post_keywords)
+                            ->assign('tags_to_edit', $post_tags)
+                            ->assign('path_to_image', $post_image)  
+                            ->assign('to_edit', $post_content)
                             ->assign('pages_array', $pages_array)
                             ->assign('parent_page', $parent_page)
                             ->assign('templates_array', $templates_array)
-                            ->assign('post_template', $post_template)
-                            ->assign('post_status', $post_status)
-                            ->assign('post_access', $post_access)
+                            ->assign('template', $post_template)
+                            ->assign('status', $post_status)
+                            ->assign('access', $post_access)                            
                             ->assign('status_array', $status_array)
                             ->assign('access_array', $access_array)
                             ->assign('date', $date)
@@ -298,6 +303,7 @@ class PagesAdmin extends Backend
                             if (Request::post('page_description')) $post_description = Request::post('page_description'); else $post_description = '';
                             if (Request::post('page_tags'))        $post_tags        = Request::post('page_tags'); else $post_tags = '';
                             if (Request::post('editor'))           $post_content     = Request::post('editor'); else $post_content = '';
+                            if (Request::post('page_image'))       $post_image       = Request::post('page_image'); else $post_image = '';
                             if (Request::post('templates'))        $post_template    = Request::post('templates'); else $post_template = 'index';
                             if (Request::post('status'))           $post_status      = Request::post('status'); else $post_status = 'published';
                             if (Request::post('access'))           $post_access      = Request::post('access'); else $post_access = 'public';
@@ -327,55 +333,34 @@ class PagesAdmin extends Backend
                                             $pages->updateWhere('[parent="'.$_page['parent'].'"]', array('parent' => Security::safeName(Request::post('page_name'), '-', true)));
                                         }
                                     }
+                                } 
+                                
+                                $page_date_array = array(
+                                  'slug'        => Security::safeName(Request::post('page_name'), '-', true),
+                                  'template'    => Request::post('templates'),
+                                  'parent'      => $parent_page,
+                                  'title'       => Request::post('page_title'),
+                                  'image'       => Request::post('page_image'),
+                                  'meta_title'  => Request::post('page_meta_title'),                                                              
+                                  'description' => Request::post('page_description'),
+                                  'keywords'    => Request::post('page_keywords'),
+                                  'tags'        => Request::post('page_tags'),
+                                  'robots_index' => $robots_index,
+                                  'robots_follow'=> $robots_follow,
+                                  'status'      => Request::post('status'),
+                                  'access'      => Request::post('access'),
+                                  'date'        => $date,
+                                  'author'      => $author);            
 
-                                    if ($pages->updateWhere('[slug="'.Request::get('name').'"]',
-                                                        array('slug'        => Security::safeName(Request::post('page_name'), '-', true),
-                                                              'template'    => Request::post('templates'),
-                                                              'parent'      => $parent_page,
-                                                              'title'       => Request::post('page_title'),
-                                                              'meta_title'  => Request::post('page_meta_title'),                                                              
-                                                              'description' => Request::post('page_description'),
-                                                              'keywords'    => Request::post('page_keywords'),
-                                                              'tags'        => Request::post('page_tags'),
-                                                              'robots_index' => $robots_index,
-                                                              'robots_follow'=> $robots_follow,
-                                                              'status'      => Request::post('status'),
-                                                              'access'      => Request::post('access'),
-                                                              'date'        => $date,
-                                                              'author'      => $author))) {
 
-                                        File::setContent(STORAGE . DS . 'pages' . DS . Request::post('page_id') . '.page.txt', XML::safe(Request::post('editor')));
-                                        Notification::set('success', __('Your changes to the page <i>:page</i> have been saved.', 'pages', array(':page' => Security::safeName(Request::post('page_title'), '-', true))));
-                                    }
+                                if ($pages->updateWhere('[slug="'.Request::get('name').'"]', $page_date_array)) {
 
-                                    // Run edit extra actions
-                                    Action::run('admin_pages_action_edit');
-
-                                } else {
-
-                                    if ($pages->updateWhere('[slug="'.Request::get('name').'"]',
-                                                        array('slug'        => Security::safeName(Request::post('page_name'), '-', true),
-                                                              'template'    => Request::post('templates'),
-                                                              'parent'      => $parent_page,
-                                                              'title'       => Request::post('page_title'),
-                                                              'meta_title'       => Request::post('page_meta_title'),                                                              
-                                                              'description' => Request::post('page_description'),
-                                                              'keywords'    => Request::post('page_keywords'),
-                                                              'tags'        => Request::post('page_tags'),
-                                                              'robots_index' => $robots_index,
-                                                              'robots_follow'=> $robots_follow,
-                                                              'status'      => Request::post('status'),
-                                                              'access'      => Request::post('access'),
-                                                              'date'        => $date,
-                                                              'author'      => $author))) {
-
-                                        File::setContent(STORAGE . DS . 'pages' . DS . Request::post('page_id') . '.page.txt', XML::safe(Request::post('editor')));
-                                        Notification::set('success', __('Your changes to the page <i>:page</i> have been saved.', 'pages', array(':page' => Security::safeName(Request::post('page_title'), '-', true))));
-                                    }
-
-                                    // Run edit extra actions
-                                    Action::run('admin_pages_action_edit');
+                                    File::setContent(STORAGE . DS . 'pages' . DS . Request::post('page_id') . '.page.txt', XML::safe(Request::post('editor')));
+                                    Notification::set('success', __('Your changes to the page <i>:page</i> have been saved.', 'pages', array(':page' => Security::safeName(Request::post('page_title'), '-', true))));
                                 }
+
+                                // Run edit extra actions
+                                Action::run('admin_pages_action_edit');
 
                                 // Redirect
                                 if (Request::post('edit_page_and_exit')) {
@@ -426,7 +411,8 @@ class PagesAdmin extends Backend
                         if (Request::post('page_keywords'))     $keywords_to_edit    = Request::post('page_keywords'); else $keywords_to_edit = $page['keywords'];
                         if (Request::post('page_tags'))         $tags_to_edit        = Request::post('page_tags'); else $tags_to_edit = isset($page['tags']) ? $page['tags'] : '';;
                         if (Request::post('editor'))            $to_edit             = Request::post('editor'); else $to_edit = Text::toHtml($page_content);
-
+                        if (Request::post('page_image'))        $path_to_image       = Request::post('page_image'); else $path_to_image = $page['image'];
+                        
                         if (Request::post('robots_index'))      $post_robots_index  = true; else if ($page['robots_index'] == 'noindex') $post_robots_index = true; else  $post_robots_index = false;
                         if (Request::post('robots_follow'))     $post_robots_follow = true; else if ($page['robots_follow'] == 'nofollow') $post_robots_follow = true; else  $post_robots_follow = false;
 
@@ -459,6 +445,7 @@ class PagesAdmin extends Backend
                                 ->assign('description_to_edit', $description_to_edit)
                                 ->assign('keywords_to_edit', $keywords_to_edit)
                                 ->assign('tags_to_edit', $tags_to_edit)
+                                ->assign('path_to_image', $path_to_image)                               
                                 ->assign('page', $page)
                                 ->assign('to_edit', $to_edit)
                                 ->assign('pages_array', $pages_array)

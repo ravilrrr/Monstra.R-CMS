@@ -1,13 +1,13 @@
 <?php
 
 /**
- *	Pages plugin
+ *  Pages plugin
  *
- *	@package Monstra
+ *  @package Monstra
  *  @subpackage Plugins
- *	@author Romanenko Sergey / Awilum
- *	@copyright 2012-2014 Romanenko Sergey / Awilum
- *	@version 1.0.0
+ *  @author Romanenko Sergey / Awilum
+ *  @copyright 2012-2014 Romanenko Sergey / Awilum
+ *  @version 1.0.0
  *
  */
 
@@ -496,6 +496,19 @@ class Page extends Pages
         return Pages::$page['slug'];
     }
 
+    /**
+     * Get page image
+     *
+     *  <code>
+     *      echo Page::image();
+     *  </code>
+     *
+     */
+    public static function image()
+    {
+        return Pages::$page['image'];
+    }
+    
     /**
      * Get page meta robots
      *
