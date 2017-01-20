@@ -21,12 +21,13 @@ Plugin::register( __FILE__,
                 'sitemap',
                 'box');
 
+if (Option::get('sitemap_auto') == '1') {
 // Add actions
-Action::add('admin_pages_action_add', 'Sitemap::create');
-Action::add('admin_pages_action_edit', 'Sitemap::create');
-Action::add('admin_pages_action_clone', 'Sitemap::create');
-Action::add('admin_pages_action_delete', 'Sitemap::create');
-
+    Action::add('admin_pages_action_add', 'Sitemap::create');
+    Action::add('admin_pages_action_edit', 'Sitemap::create');
+    Action::add('admin_pages_action_clone', 'Sitemap::create');
+    Action::add('admin_pages_action_delete', 'Sitemap::create');
+}
 /**
  * Sitemap class
  */

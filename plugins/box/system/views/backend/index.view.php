@@ -95,6 +95,12 @@
         </div>
         <div class="form-group">
         <?php
+            echo Form::label('sitemap_auto', __('Sitemap auto', 'system'));
+            echo Form::select('sitemap_auto', array(__('off', 'system'), __('on', 'system')), Option::get('sitemap_auto'), array('class' => 'form-control'));
+        ?>
+        </div>
+        <div class="form-group">
+        <?php
             echo (
                 Form::label('site_maintenance_message', __('Maintenance Mode', 'system')).
                 Form::textarea('site_maintenance_message', Html::toText(Option::get('maintenance_message')), array('class' => 'form-control', 'style' => 'height:160px;'))

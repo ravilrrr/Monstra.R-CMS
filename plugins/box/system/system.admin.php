@@ -133,6 +133,7 @@ class SystemAdmin extends Backend
                                        'timezone'            => Request::post('system_timezone'),
                                        'system_email'        => Request::post('system_email'),
                                        'language'            => Request::post('system_language'),
+                                       'sitemap_auto'        => Request::post('sitemap_auto'),
                                        'maintenance_message' => Request::post('site_maintenance_message')));
 
                     Notification::set('success', __('Your changes have been saved.', 'system'));
