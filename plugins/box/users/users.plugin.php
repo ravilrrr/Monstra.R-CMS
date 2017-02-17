@@ -1,25 +1,25 @@
 <?php
 
 /**
- *	Users plugin
+ *  Users plugin
  *
- *	@package Monstra
+ *  @package Monstra
  *  @subpackage Plugins
- *	@author Romanenko Sergey / Awilum
- *	@copyright 2012-2014 Romanenko Sergey / Awilum
- *	@version 1.0.0
+ *  @author Romanenko Sergey / Awilum
+ *  @copyright 2012-2014 Romanenko Sergey / Awilum
+ *  @version 1.0.0
  *
  */
 
 // Register plugin
 Plugin::register( __FILE__,
-				__('Users', 'users'),
-				__('Users manager', 'users'),
-				'1.0.0',
-				'Awilum',
-				'http://monstra.org/',
-				'users',
-				'box');
+                __('Users', 'users'),
+                __('Users manager', 'users'),
+                '1.0.0',
+                'Awilum',
+                'http://monstra.org/',
+                'users',
+                'box');
 
 if (Session::exists('user_role') && in_array(Session::get('user_role'), array('admin', 'editor'))) {
 
@@ -60,7 +60,7 @@ class Users extends Frontend
     {
         /* /users */
          // if (Uri::segment(0) == 'users' && !Uri::segment(1)) return 'list';
-		 if (Uri::segment(0) == 'users' && !Uri::segment(1)) return 'login';
+        if (Uri::segment(0) == 'users' && !Uri::segment(1)) return 'login';
         /* /users/(int) */
         if (Uri::segment(1) && (Uri::segment(1) !== 'login' && Uri::segment(1) !== 'registration' && Uri::segment(1) !== 'password-reset' && Uri::segment(2) !== 'edit')) return 'profile';
         /* /users/login */
@@ -90,9 +90,11 @@ class Users extends Frontend
      */
     public static function getProfile($id)
     {
-        View::factory('box/users/views/frontend/profile')
-            ->assign('user', Users::$users->select("[id=".(int) $id."]", null))
-            ->display();
+        if (Users::isLoged()) {
+            View::factory('box/users/views/frontend/profile')
+                ->assign('user', Users::$users->select("[id=".(int) $id."]", null))
+                ->display();
+        }
     }
 
     /**
