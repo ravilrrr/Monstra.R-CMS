@@ -15,6 +15,11 @@ define('THEMES_SITE', ROOT . DS . 'public' . DS . 'themes');
 define('THEMES_ADMIN', ROOT . DS . 'admin' . DS . 'themes');
 
 /**
+ * The filesystem path to the admin folder
+ */
+define('ADMIN', ROOT . DS . 'admin');
+
+/**
  * The filesystem path to the 'plugins' folder
  */
 define('PLUGINS', ROOT . DS . 'plugins');
