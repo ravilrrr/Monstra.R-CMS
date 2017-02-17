@@ -14,9 +14,14 @@
 
 // Main engine defines
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', rtrim(str_replace(array('admin'), array(''), dirname(__FILE__)), '\\/'));
 define('BACKEND', true);
 define('MONSTRA_ACCESS', true);
+
+$admin_array = explode(DS, dirname(__FILE__));
+$admin_end = array_pop($admin_array);
+$root = implode(DS, $admin_array);
+
+define('ROOT', $root);
 
 // Load Monstra engine _init.php file
 require_once ROOT. DS .'engine'. DS .'_init.php';
@@ -156,7 +161,7 @@ if ($is_admin) {
     if (Request::get('id')) {
         $area = Request::get('id');
     } else {
-        Request::redirect(Site::url().'/admin/index.php?id=dashboard');
+        Request::redirect(Site::url().'/' . ADMIN . '/index.php?id=dashboard');
     }
 
     $plugins_registered = Plugin::$plugins;
