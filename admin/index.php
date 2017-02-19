@@ -136,7 +136,7 @@ if (Request::post('reset_password_submit')) {
         Notification::set('reset_password', 'reset_password');
 
         // Redirect to password-reset page
-        Request::redirect(Site::url().'/admin');
+        Request::redirect(Site::url() . '/' . ADMIN);
     }
 
     Notification::setNow('reset_password', 'reset_password');
