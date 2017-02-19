@@ -156,6 +156,8 @@ class Pages extends Frontend
 
             } else {
 
+                if ($defpage == $data[0]) Request::redirect(Option::get('siteurl'), 301);
+
                 // Get current page
                 $current_page = Pages::$pages->select('[slug="'.$data[0].'"]', null);
 
