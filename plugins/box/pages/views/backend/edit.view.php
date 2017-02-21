@@ -48,12 +48,14 @@
         ?>
         </div>
         
-        <div class="form-group">
-        <?php
-            echo Form::label('page_image', __('Page image', 'pages')); 
-            echo Form::input('page_image', $path_to_image, array('class' => 'form-control'))                
-        ?>
-        </div>      
+		<div class="form-group">
+			<label for="page_image"><?php echo __('Page image', 'pages') ?></label>
+			<div class="input-group">
+				<input id="page_image" name="page_image" value="<?php echo $path_to_image ?>" class="form-control" type="text" placeholder="click for insert image">
+				<span class="input-group-addon" ><i class="fa fa-picture-o"></i></span>
+			</div>
+		</div>
+		
     </div>
     <div class="tab-pane <?php if (Notification::get('metadata')) { ?>active<?php } ?>" id="metadata">
         <div class="form-group">
