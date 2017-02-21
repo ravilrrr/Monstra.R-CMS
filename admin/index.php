@@ -16,12 +16,7 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('BACKEND', true);
 define('MONSTRA_ACCESS', true);
-
-$admin_array = explode(DS, dirname(__FILE__));
-$admin_end = array_pop($admin_array);
-$root = implode(DS, $admin_array);
-
-define('ROOT', $root);
+define('ROOT', str_replace('\\', '/', realpath(dirname(__FILE__) . '/../')));
 
 // Load Monstra engine _init.php file
 require_once ROOT. DS .'engine'. DS .'_init.php';
