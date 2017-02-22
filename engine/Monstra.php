@@ -31,7 +31,7 @@ class Monstra
     /**
      * The version of Monstra
      */
-    const VERSION = '1.0';
+    const VERSION = '1.1 beta';
 
 
     /**
