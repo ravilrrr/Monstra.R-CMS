@@ -16,11 +16,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <?php echo Menu::get(); ?>
-                    <?php Users::getPanel(); ?>	                
-				</ul>
-			
-				
-				
+                    <?php Users::getPanel(); ?>                 
+                </ul>
+            
+                
+                
             </div>
             <!-- /.navbar-collapse -->
         </div>

@@ -3,9 +3,9 @@
 
 <head>
     <base href="<?php echo Site::url(); ?>" />
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo Site::title(); ?> | <?php echo Site::name(); ?></title>
+    <title><?php echo Site::title(); ?> | <?php echo Site::name(); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo Site::description(); ?>">
     <meta name="keywords" content="<?php echo Site::keywords(); ?>">
@@ -25,7 +25,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="<?php echo Site::url(); ?>/public/assets/css/bootstrap.css" type="text/css" />
     <?php Stylesheet::add('public/themes/default/css/default.css', 'frontend', 2); ?>
-	<?php Stylesheet::load(); ?>
+    <?php Stylesheet::load(); ?>
 
     <!-- Custom Fonts -->
     <link href="<?php echo Site::url(); ?>/public/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -37,9 +37,9 @@
     <?php Javascript::add('public/assets/js/bootstrap.min.js', 'frontend', 2); ?>
     <?php Javascript::load(); ?>
 
-    <?php Action::run('theme_header'); ?>	
-	
-	
+    <?php Action::run('theme_header'); ?>   
+    
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -50,7 +50,7 @@
 
     <!-- Fav-icons -->
     <link rel="icon" href="<?php echo Site::url(); ?>/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="<?php echo Site::url(); ?>/favicon.ico" type="image/x-icon">	
-	
-	
+    <link rel="shortcut icon" href="<?php echo Site::url(); ?>/favicon.ico" type="image/x-icon">    
+    
+    
 </head>

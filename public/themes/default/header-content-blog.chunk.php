@@ -16,11 +16,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <?php echo Menu::get(); ?>
-                    <?php Users::getPanel(); ?>	                
-				</ul>
-			
-				
-				
+                    <?php Users::getPanel(); ?>                 
+                </ul>
+            
+                
+                
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -35,7 +35,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
                         <h1><?php echo Page::title(); ?></h1>
-						Posted by <?php echo Blog::getPostAuthor(); ?> on <i class="monstra-blog-date"><?php echo Blog::getPostDate('d M Y'); ?></i>
+                        Posted by <?php echo Blog::getPostAuthor(); ?> on <i class="monstra-blog-date"><?php echo Blog::getPostDate('d M Y'); ?></i>
                     </div>
                 </div>
             </div>
