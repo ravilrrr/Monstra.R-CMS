@@ -38,7 +38,7 @@ class Sitemap extends Frontend
      *
      * @var array
      */
-    public static $forbidden_components = array('pages', 'sitemap');
+    public static $forbidden_components = array('pages', 'sitemap', 'users');
 
     /**
      * Sitemap Title
