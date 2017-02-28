@@ -603,7 +603,7 @@
 
         <div class="install-block-footer login-footer">
             <div class="text-center">
-                <span>© 2012 - 2016 <a href="http://monstra.org" class="small-grey-text" target="_blank">Monstra</a> – <?php echo __('Version', 'system'); ?> <?php echo Monstra::VERSION; ?></span>
+                <span>© 2012 - 2017 <a href="http://monstra.org" class="small-grey-text" target="_blank">Monstra.R</a> – <?php echo __('Version', 'system'); ?> <?php echo Monstra::VERSION; ?></span>
             </div>
         </div>
 
