@@ -1,13 +1,14 @@
 <?php
 
 /**
- *	CodeMirror plugin
+ *  CodeMirror plugin
  *
- *	@package Monstra
+ *  @package Monstra.R
  *  @subpackage Plugins
- *	@author Romanenko Sergey / Awilum
- *	@copyright 2012-2014 Romanenko Sergey / Awilum
- *	@version 1.0.0
+ *  @author Romanenko Sergey / Awilum
+ *  @copyright 2012-2014 Romanenko Sergey / Awilum
+ *  @copyright 2017-2017 Ravilr
+ *  @version 1.1
  *
  */
 
@@ -15,8 +16,8 @@
 Plugin::register( __FILE__,
                 __('CodeMirror', 'codemirror'),
                 __('CodeMirror is a versatile text editor implemented in JavaScript for the browser.', 'codemirror'),
-                '1.0.0',
-                'Awilum',
+                '1.1',
+                'Ravilr',
                 'http://monstra.org/');
 
 // Add hooks
@@ -36,10 +37,12 @@ class CodeMirror
     public static function headers()
     {
         if (Request::get('id') == 'themes' || Request::get('id') == 'snippets' || Request::get('id') == 'emails') { 
-		    echo ('
+            echo ('
             <link rel="stylesheet" type="text/css" href="'.Option::get('siteurl').'/plugins/codemirror/codemirror/lib/codemirror.css" />
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/lib/codemirror.js"></script>
+            <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/addon/fold/xml-fold.js"></script>
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/addon/edit/matchbrackets.js"></script>
+            <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/addon/edit/matchtags.js"></script>
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/mode/htmlmixed/htmlmixed.js"></script>
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/mode/xml/xml.js"></script>
             <script type="text/javascript" src="'.Option::get('siteurl').'/plugins/codemirror/codemirror/mode/javascript/javascript.js"></script>
@@ -60,15 +63,17 @@ class CodeMirror
                 }
             </style>
             ');
-		}
+        }
 
         if (Request::get('id') == 'themes' || Request::get('id') == 'snippets' || Request::get('id') == 'emails') { 
             
             if (Request::get('action') == 'edit_styles') {
                 $mode = 'text/css';
+            } elseif (Request::get('action') == 'edit_script') {
+                $mode = 'javascript';
             } else {
                 $mode = 'application/x-httpd-php';
-			}
+            }
             
             echo ('<script>
                         $(document).ready(function() {
@@ -76,6 +81,7 @@ class CodeMirror
                                 lineNumbers: false,
                                 styleActiveLine: true,
                                 matchBrackets: true,
+                                matchTags: {bothTags: true},
                                 indentUnit: 4,
                                 mode:  "'.$mode.'",
                                 indentWithTabs: true,
