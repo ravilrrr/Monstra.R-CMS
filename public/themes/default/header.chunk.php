@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <base href="<?php echo Site::url(); ?>" />
+    <base href="<?php echo Site::url() . '/'; ?>" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo Site::title(); ?> | <?php echo Site::name(); ?></title>
