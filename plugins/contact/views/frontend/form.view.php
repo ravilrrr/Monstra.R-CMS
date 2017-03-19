@@ -34,7 +34,7 @@
 
     <?php if (Option::get('captcha_installed') == 'true') { ?>
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-6 captcha">
 				<div class="form-group">
 					<input class="captcha-input" type="text" name="answer" placeholder="<?php echo __('Captcha', 'users'); ?>"><?php if (isset($errors['captcha_wrong'])) echo Html::nbsp(3).'<span class="error">'.$errors['captcha_wrong'].'</span>'; ?>
 					<?php CryptCaptcha::draw(); ?>
