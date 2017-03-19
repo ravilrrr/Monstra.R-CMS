@@ -9,7 +9,9 @@ mb_regex_encoding('UTF-8');
 ob_start('mb_output_handler');
 date_default_timezone_set('Europe/Rome');
 
-$sec_key = file_get_contents('./../../../storage/database/sec.key');
+$sec_key = file_get_contents('../../../storage/database/sec.key');
+$end_url = substr($_SERVER[SCRIPT_NAME], 0, -54);
+$base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $end_url;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,8 +67,8 @@ $config = array(
 	| without final / (DON'T TOUCH)
 	|
 	*/
-	'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
-
+	//'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
+	'base_url' => $base_url,
 	/*
 	|--------------------------------------------------------------------------
 	| path from base_url to base of upload folder
@@ -84,7 +86,7 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => './../../../public/uploads/original/',
+	'current_path' => '../../../public/uploads/original/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -95,7 +97,7 @@ $config = array(
 	| DO NOT put inside upload folder
 	|
 	*/
-	'thumbs_base_path' => './../../../public/uploads/thumbs/',
+	'thumbs_base_path' => '../../../public/uploads/thumbs/',
 
 
 	/*
