@@ -15,7 +15,7 @@ class SimpleMDE
     {
         echo ('
 		<link rel="stylesheet" type="text/css" href="'.Option::get('siteurl').'/plugins/simplemde/simplemde/simplemde.min.css" />
-		<link rel="stylesheet" type="text/css" href="'.Option::get('siteurl').'/plugins/simplemde/simplemde/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="'.Option::get('siteurl').'/public/assets/fonts/font-awesome/css/font-awesome.min.css" />
 		');
     }
 	
@@ -42,9 +42,6 @@ class SimpleMDE
 						enabled: false,
 						uniqueId: "new-page",
 						delay: 1000,
-					},
-					renderingConfig: {
-						singleLineBreaks: false,
 					},
 					toolbar: ["bold", "italic", "heading-1", "heading-2", "heading-3", "|", "quote", "unordered-list", "table", "|", "link", "image", "code", "horizontal-rule", "|", "preview", "side-by-side", "fullscreen", "guide"]
 			
